@@ -183,7 +183,7 @@ def historico_missoes(): # Função para mostrar todos os dados armazenados de d
         count = 1
         for missao_atual in historico: # Laço para mostrar todas as missões armazenadas
             print("\n" + "=" * 55)
-            print(f'\nMissão {count}º - {missao_atual["origem"]} até {missao_atual["destino"]}')
+            print(f'\nMissão {count} - {missao_atual["origem"]} até {missao_atual["destino"]}')
             print(f'Esse trajeto possui uma distância de: {missao_atual["distancia_km"]:.2f} km e uma duração de {missao_atual["tempo_min"]:.2f} min')
 
             if "tempo_otimizado" in missao_atual:
@@ -199,8 +199,7 @@ def gerar_relatorio(): # Essa função serve somente para fazer um relátorio da
     
     else:
         print("\n=== RELATÓRIO OPERACIONAL ===\n")
-        print(f"Total de registros: {total}")
-
+        
         # Essas variáveis vão servir para realizar uma média do tempo otimizado pelo nosso sistema e do tempo normal do trajeto 
         tempo_normal = 0 
         tempo_otimizado = 0
@@ -221,12 +220,11 @@ def gerar_relatorio(): # Essa função serve somente para fazer um relátorio da
 
             percentual = (media_economizada * 100) / media_normal  # Aqui calculamos um percentual de quanto tempo foi economizado em média com nosso produto
 
-            print("\n=== RELATÓRIO ===\n")
             print(f'A quantidade de rotas usadas nessa análise foram de: {quantidade}')
-            print(f"Média do tempo normal dos trajetos: {media_normal:.2f} min")
-            print(f"Média do tempo otimizado com o PULSEROUTE: {media_otimizada:.2f} min")
-            print(f"Média do tempo economizado com nosso sistema: {media_economizada:.2f} min")
-            print(f"Média do ganho percentual: {percentual:.2f}%")
+            print(f"A média do tempo normal dos trajetos é de: {media_normal:.2f} min")
+            print(f"A média do tempo dos trajetos com o PULSEROUTE: {media_otimizada:.2f} min")
+            print(f"A redução média de tempo nos trajetos com o PULSEROUTE: {media_economizada:.2f} min")
+            print(f"A média percentual do ganho de tempo com o PULSEROUTE foi de: {percentual:.2f}%")
 
         else:
             print("Nenhuma rota foi simulada com o PULSEROUTE!")
