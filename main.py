@@ -128,7 +128,7 @@ def simular_pulseroute(): # Essa função serve para simular como funcionaria no
         count = 1
         print('Digite 0 - Retornar ao menu principal ')
         for missao in historico: # Laço para mostrar todas as missões armazenadas
-            print(f'Missão {count}º - {missao["origem"]} até {missao["destino"]}')
+            print(f'Digite {count} - {missao["origem"]} até {missao["destino"]}')
             count+=1
 
         while True: # Esse laço não é um menu secundário, foi usado somente para caso o usuário tenha digitado um número fora do esperado, o sistema peça novamente uma nova entrada
@@ -188,8 +188,6 @@ def historico_missoes(): # Função para mostrar todos os dados armazenados de d
 
             if "tempo_otimizado" in missao_atual:
                 print(f'Com a utilização do PULSEROUTE, o tempo final desse trajeto é de {missao_atual["tempo_otimizado"]:.2f} min')
-            
-            
 
             count+=1
 
