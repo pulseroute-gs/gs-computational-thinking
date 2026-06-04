@@ -6,6 +6,7 @@ import random # Biblioteca usada para sortear um número aleatório para calcula
 
 # Criar verificação se a rota já foi simulada, se ela já foi, não aparecer a opção de simular novamente
 # Adicionar mais localidades
+# Verificação de entrada igual de localidades
 
 # Em relação ao conteúdo do código, além do contéudo dado em sala de aula, foi utilizado validação de entrada e acesso a API com try/except, manipulação de dicionários e APIs, além de escondermos a chave da API usando .env
 
@@ -48,7 +49,7 @@ def iniciar_trajeto(): # Essa função serve para simular um trajeto de um siste
             origem_opcao = int(input("\nEscolha origem: "))
             destino_opcao = int(input("Escolha destino: "))
 
-            if (origem_opcao or destino_opcao) in locais:
+            if (origem_opcao and destino_opcao) in locais:
                 break
 
             else:
