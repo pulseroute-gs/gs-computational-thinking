@@ -15,7 +15,7 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv() # Carrega o arquivo .env contendo a chave da API
-API_KEY = os.getenv("API_KEY") # Recebe a chave para a nossa API
+API_KEY = "eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6IjI5ZTRmMDdlY2EwMTQwMWFiZTlkYWIwMzAxYWZkYmUxIiwiaCI6Im11cm11cjY0In0=" # Recebe a chave para a nossa API
 
 historico = [] # Lista para armazenar dicionários, onde cada um contém uma emergência com sua origem, destino e prioridade
 
