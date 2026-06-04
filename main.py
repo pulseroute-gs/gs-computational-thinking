@@ -269,7 +269,7 @@ def main():
         print("2 - Iniciar missão de emergência") # feito
         print("3 - Simular PULSEROUTE") # feito
         print("4 - Consultar histórico de missões") # feito
-        print("5 - Relatório de tempo salvo") # feito
+        print("5 - Relatório de tempo salvo nas emergências") # feito
         print("6 - Mostrar Análise Matemática") # dúvida
         print("7 - Sair") # feito
 
