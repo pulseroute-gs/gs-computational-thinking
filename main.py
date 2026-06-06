@@ -281,7 +281,7 @@ def main():
             case '6':
                 while True:
                     try:
-                        print('Bem vindo ao cálculo de tempo ganho com semáforos inteligentes')
+                        print('Bem-vindo ao cálculo de tempo otimizado com semáforos inteligentes pelo PULSEROUTE.')
                         print('Digite o tempo de um trajeto em minutos: ')
                         temp = int(input(''))
                         print('Digite a quantidade de semáforos que deseja calcular e descobrir o tempo ganhado: ')
