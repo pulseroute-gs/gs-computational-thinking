@@ -234,7 +234,7 @@ def calculo_tempo(tempo_inicial, quantidade_semaforos): # Função para calcular
     print(f'T(x) = {ti} X {0.95 ** qt}')
     print(f'T(x) = {resultado}')
 
-    print('\nA seguir temos uma tabela para analisar os resultados dessa função')
+    print('\nA seguir temos uma tabela para analisar os pontos dessa função')
     print("\n=== ANÁLISE EXPONENCIAL ===\n")
 
     print("Semáforos | Tempo Previsto")
@@ -243,7 +243,7 @@ def calculo_tempo(tempo_inicial, quantidade_semaforos): # Função para calcular
 
     if qt > 15:
         salto = 2
-        
+
     for i in range(0,qt+1,salto):
         tempo = ti * (0.95 ** i)
         print(f"{i:^10} | {tempo:.2f} min")
@@ -296,7 +296,7 @@ def main():
                         if quant == 0:
                             break
                         
-                        if temp <= 0:
+                        elif temp <= 0:
                             entrada_invalida()
                         
                         else:
