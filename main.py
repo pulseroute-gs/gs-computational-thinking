@@ -3,9 +3,6 @@
 import requests # Biblioteca usada para fazer requisições para a API OpenRouteService selecionada pelo nosso grupo como base de dados
 import random # Biblioteca usada para sortear um número aleatório para calcular um desvio padrão de uma média feita no código
 
-# import math 
-# import matplotlib.pyplot as plt
-
 # Falar q uma missão pode ser resimulada e alterar seu tempo com nosso projeto
 # Adicionar mais localidades 
 
@@ -255,13 +252,13 @@ def main():
         print("\n" + "=" * 55)
         print("         PULSEROUTE EMERGENCY SYSTEM")
         print("=" * 55)
-        print("1 - Sobre o Projeto") # feita
-        print("2 - Iniciar missão de emergência") # feito
-        print("3 - Simular PULSEROUTE") # feito
-        print("4 - Consultar histórico de missões") # feito
-        print("5 - Relatório de tempo salvo nas emergências") # feito
+        print("1 - Sobre o Projeto")
+        print("2 - Iniciar missão de emergência") 
+        print("3 - Simular PULSEROUTE") 
+        print("4 - Consultar histórico de missões") 
+        print("5 - Relatório de tempo salvo nas emergências") 
         print("6 - Calcular quanto tempo será economizado com cada semáforo inteligente") 
-        print("7 - Sair") # feito
+        print("7 - Sair")
 
         opcao = input("\nEscolha uma opção: ")
 
@@ -285,19 +282,26 @@ def main():
                 while True:
                     try:
                         print('Bem vindo ao cálculo de tempo ganho com semáforos inteligentes')
+                        print('Digite o tempo de um trajeto em minutos: ')
+                        temp = int(input(''))
                         print('Digite a quantidade de semáforos que deseja calcular e descobrir o tempo ganhado: ')
                         quant = int(input(''))
 
                         if quant == 0:
                             break
+                        
+                        if temp <= 0:
+                            entrada_invalida()
+                        
+                        else:
+                            tempo = calculo_tempo(temp, quant)
 
-                        tempo = calculo_tempo(quant)
+                            print(f'O tempo final foi de: {tempo}')
+                            print('Deseja testar outra quantidade? ')
+                            novamente = input('Digite: (s/n)\n')
 
-                        print('Deseja testar outra quantidade? ')
-                        novamente = input('Digite: (s/n)\n')
-
-                        if novamente == 'n':
-                            break
+                            if novamente == 'n':
+                                break
                     
                     except ValueError:
                         entrada_invalida()
