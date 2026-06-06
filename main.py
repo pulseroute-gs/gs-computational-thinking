@@ -228,22 +228,22 @@ def calculo_tempo(tempo_inicial, quantidade_semaforos): # Função para calcular
     print('qt = Quantidade de semáforos na rota\n')
     print("Função: T(x) = ti × 0.95^qt\n")
     
-    tempo = ti * (0.95 ** qt)
+    resultado = ti * (0.95 ** qt)
 
     print(f'T(x) = {ti} × 0.95^({qt})')
     print(f'T(x) = {ti} X {0.95 ** qt}')
-    print(f'T(x) = {tempo}')
+    print(f'T(x) = {resultado}')
 
-    print('A seguir temos uma tabela para analisar os resultados dessa função\n')
+    print('\nA seguir temos uma tabela para analisar os resultados dessa função')
     print("\n=== ANÁLISE EXPONENCIAL ===\n")
 
     print("Semáforos | Tempo Previsto")
 
     for i in range(qt+1):
-        tempo = ti * (0.97 ** i)
+        tempo = ti * (0.95 ** i)
         print(f"{i:^10} | {tempo:.2f} min")
 
-    economia = ti - tempo
+    economia = ti - resultado
     
     return economia
 
@@ -296,7 +296,7 @@ def main():
                         else:
                             tempo = calculo_tempo(temp, quant)
 
-                            print(f'O tempo final foi de: {tempo}')
+                            print(f'\nO tempo final foi de: {tempo}')
                             print('Deseja testar outra quantidade? ')
                             novamente = input('Digite: (s/n)\n')
 
