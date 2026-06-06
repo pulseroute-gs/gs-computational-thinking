@@ -260,7 +260,7 @@ def main():
         print("3 - Simular PULSEROUTE") # feito
         print("4 - Consultar histórico de missões") # feito
         print("5 - Relatório de tempo salvo nas emergências") # feito
-        print("6 - Calcular quanto tempo será economizado com cada semáforo inteligente") 
+        print("6 - Calcular economia de tempo por semáforo inteligente") 
         print("7 - Sair") # feito
 
         opcao = input("\nEscolha uma opção: ")
@@ -284,7 +284,7 @@ def main():
             case '6':
                 while True:
                     try:
-                        print('Bem vindo ao cálculo de tempo ganho com semáforos inteligentes')
+                        print('Bem vindo ao cálculo de tempo ganho com semáforos inteligentes.')
                         print('Digite a quantidade de semáforos que deseja calcular e descobrir o tempo ganhado: ')
                         quant = int(input(''))
 
