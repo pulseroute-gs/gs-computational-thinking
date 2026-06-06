@@ -239,7 +239,12 @@ def calculo_tempo(tempo_inicial, quantidade_semaforos): # Função para calcular
 
     print("Semáforos | Tempo Previsto")
 
-    for i in range(qt+1):
+    salto = 1
+
+    if qt > 15:
+        salto = 2
+        
+    for i in range(0,qt+1,salto):
         tempo = ti * (0.95 ** i)
         print(f"{i:^10} | {tempo:.2f} min")
 
