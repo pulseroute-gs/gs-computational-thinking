@@ -300,10 +300,12 @@ def main():
                             entrada_invalida()
                         
                         else:
-                            tempo = calculo_tempo(temp, quant)
+                            economia = calculo_tempo(temp, quant)
 
-                            print(f'\nO tempo final foi de: {tempo}')
-                            print('Deseja testar outra quantidade? ')
+                            print(f'\nO tempo otimizado com o PULSEROUTE foi de: {temp - economia}')
+                            print(f'A economia final foi de: {economia}')
+                            
+                            print('Deseja testar outra quantidade? \n')
                             novamente = input('Digite: (s/n)\n')
 
                             if novamente == 'n':
