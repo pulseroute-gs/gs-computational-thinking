@@ -252,13 +252,13 @@ def main():
         print("\n" + "=" * 55)
         print("         PULSEROUTE EMERGENCY SYSTEM")
         print("=" * 55)
-        print("1 - Sobre o Projeto") # feita
-        print("2 - Iniciar missão de emergência") # feito
-        print("3 - Simular PULSEROUTE") # feito
-        print("4 - Consultar histórico de missões") # feito
-        print("5 - Relatório de tempo salvo nas emergências") # feito
+        print("1 - Sobre o Projeto") 
+        print("2 - Iniciar missão de emergência") 
+        print("3 - Simular PULSEROUTE") 
+        print("4 - Consultar histórico de missões") 
+        print("5 - Relatório de tempo salvo nas emergências") 
         print("6 - Calcular economia de tempo por semáforo inteligente") 
-        print("7 - Sair") # feito
+        print("7 - Sair") 
 
         opcao = input("\nEscolha uma opção: ")
 
@@ -284,7 +284,8 @@ def main():
                         print('Bem-vindo ao cálculo de tempo otimizado com semáforos inteligentes pelo PULSEROUTE.')
                         print('Digite o tempo de um trajeto em minutos: ')
                         temp = int(input(''))
-                        print('Digite a quantidade de semáforos que deseja calcular e descobrir o tempo ganhado: ')
+                        print('Digite a quantidade de semáforos que deseja calcular e descobrir o tempo ganhado')
+                        print('Digite 0 se deseja voltar ao menu principal: ')
                         quant = int(input(''))
 
                         if quant == 0:
