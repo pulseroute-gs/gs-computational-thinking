@@ -1,23 +1,20 @@
+# Para o funcionamento desse código, é necessário ter a biblioteca requests baixada, caso não tenha, por meio do terminal, digite o seguinte para o funcionamento correto do código: pip install requests
+
 import requests # Biblioteca usada para fazer requisições para a API OpenRouteService selecionada pelo nosso grupo como base de dados
 import random # Biblioteca usada para sortear um número aleatório para calcular um desvio padrão de uma média feita no código
 
 # import math 
 # import matplotlib.pyplot as plt
 
-# Criar verificação se a rota já foi simulada, se ela já foi, não aparecer a opção de simular novamente
-# Adicionar mais localidades
-# Verificação de entrada igual de localidades
+# Falar q uma missão pode ser resimulada e alterar seu tempo com nosso projeto
+# Adicionar mais localidades 
 
-# Em relação ao conteúdo do código, além do contéudo dado em sala de aula, foi utilizado validação de entrada e acesso a API com try/except, manipulação de dicionários e APIs, além de escondermos a chave da API usando .env
+# Em relação ao conteúdo do código, além do contéudo dado em sala de aula, foi utilizado validação de entrada e acesso a API com try/except, além de manipulação de dicionários e APIs.
 
-# As duas linhas abaixos foram utilizadas para esconder nossa chave da nossa API
-import os 
-from dotenv import load_dotenv
+# A gente pensou sobre esconder a chave da API, mas como o projeto será entregue somente com o código em um arquivo .py, achamos desnecessário esconder, por isso deixamos ela exposta aqui mesmo
+API_KEY = "eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6IjI5ZTRmMDdlY2EwMTQwMWFiZTlkYWIwMzAxYWZkYmUxIiwiaCI6Im11cm11cjY0In0=" # Essa é a chave da nossa API
 
-load_dotenv() # Carrega o arquivo .env contendo a chave da API
-API_KEY = "eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6IjI5ZTRmMDdlY2EwMTQwMWFiZTlkYWIwMzAxYWZkYmUxIiwiaCI6Im11cm11cjY0In0=" # Recebe a chave para a nossa API
-
-historico = [] # Lista para armazenar dicionários, onde cada um contém uma emergência com sua origem, destino e prioridade
+historico = [] # Lista para armazenar dicionários, onde cada um contém uma rota com a sua origem, destino, distância e tempo de duração
 
 def entrada_invalida(): # Função para mostrar o usuário que a entrada inserida é inválida
     print('\nEntrada inválida!')
@@ -49,9 +46,12 @@ def iniciar_trajeto(): # Essa função serve para simular um trajeto de um siste
             origem_opcao = int(input("\nEscolha origem: "))
             destino_opcao = int(input("Escolha destino: "))
 
-            if (origem_opcao and destino_opcao) in locais:
-                break
+            if origem_opcao == destino_opcao:
+                print('Você precisa selecionar 2 localidades diferentes para conseguir fazer um trajeto!')
 
+            elif (origem_opcao and destino_opcao) in locais:
+                break
+            
             else:
                 entrada_invalida()
 
@@ -147,20 +147,11 @@ def simular_pulseroute(): # Essa função serve para simular como funcionaria no
                     if semaforos < 0: # Caso esse desvio resulte num valor negativo iria causar um erro. Então esse if serve para considerar esse erro
                         semaforos = 0
 
-                    tempo_perdido = 0
-                    sinais_vermelhos = 0
-                    
-                    for i in range(semaforos):
-                        if random.choice([True, False]): # Aqui fizemos uma probabilidade de 50% de o semáforo estar vermelho ao veículo chegar
-                            sinais_vermelhos += 1
-                            tempo_perdido += random.randint(20, 40) # Aqui temos um valor aleatório de atraso em segundos que o veículo pode passar, considerando o tempo também que ele terá que passar entre os carros parados esperando abrir a passagem
-                
-                    atraso_total = tempo_perdido / 60 # Aqui transformamos esse atraso em minutos
-                    tempo_original = missao_atual["tempo_min"] # Recebemos o tempo do trajeto padrão
+                    tempo_original = missao_atual["tempo_min"] # Recebe o tempo padrão do trajeto
 
-                    tempo_otimizado = missao_atual["tempo_min"] - atraso_total
+                    tempo_otimizado = calculo_tempo(tempo_original, semaforos) # Faz o cálculo da economia de tempo com essa quantidadde de semáforos inteligentes
 
-                    missao_atual["tempo_otimizado"] = tempo_otimizado
+                    missao_atual["tempo_otimizado"] = tempo_otimizado # Armazena esse dado na missão
 
                     print("\nPULSE ROUTE")
                     print(f"Semáforos simulados: {semaforos}")
@@ -230,35 +221,34 @@ def gerar_relatorio(): # Essa função serve somente para fazer um relátorio da
             print("Nenhuma rota foi simulada com o PULSEROUTE!")
             print('Faça alguma simulação e depois retorne!\n')
         
-# def analise_matematica():
+def calculo_tempo(tempo_inicial, quantidade_semaforos): # Função para calcular quanto tempo será economizado com uma determinda quantidade de semáforos inteligentes
+    ti = tempo_inicial
+    qt = quantidade_semaforos
 
-#     print("\n=== ANÁLISE MATEMÁTICA ===\n")
+    print("\n=== CÁLCULO MATEMÁTICO ===\n")
+    print('T(x) = Tempo final com a otimização do PULSEROUTE')
+    print('ti = Tempo normal do trajeto')
+    print('qt = Quantidade de semáforos na rota\n')
+    print("Função: T(x) = ti × 0.95^qt\n")
+    
+    tempo = ti * (0.95 ** qt)
 
-#     x = []
-#     y = []
+    print(f'T(x) = {ti} × 0.95^({qt})')
+    print(f'T(x) = {ti} X {0.95 ** qt}')
+    print(f'T(x) = {tempo}')
 
-#     for nivel in range(0, 101):
+    print('A seguir temos uma tabela para analisar os resultados dessa função\n')
+    print("\n=== ANÁLISE EXPONENCIAL ===\n")
 
-#         # Função exponencial
-#         tempo = 20 * math.exp(-0.05 * nivel) + 5
+    print("Semáforos | Tempo Previsto")
 
-#         x.append(nivel)
-#         y.append(tempo)
+    for i in range(qt+1):
+        tempo = ti * (0.97 ** i)
+        print(f"{i:^10} | {tempo:.2f} min")
 
-#     print("Função utilizada:")
-#     print("T(x) = 20e^(-0.05x) + 5")
-
-#     plt.figure(figsize=(10,5))
-
-#     plt.plot(x, y)
-
-#     plt.title("PulseRoute - Otimização Emergencial")
-#     plt.xlabel("Nível de otimização")
-#     plt.ylabel("Tempo de resposta")
-
-#     plt.grid(True)
-
-#     plt.show()
+    economia = ti - tempo
+    
+    return economia
 
 def main():
     while True:
@@ -270,7 +260,7 @@ def main():
         print("3 - Simular PULSEROUTE") # feito
         print("4 - Consultar histórico de missões") # feito
         print("5 - Relatório de tempo salvo nas emergências") # feito
-        print("6 - Mostrar Análise Matemática") # dúvida
+        print("6 - Calcular quanto tempo será economizado com cada semáforo inteligente") 
         print("7 - Sair") # feito
 
         opcao = input("\nEscolha uma opção: ")
@@ -292,8 +282,25 @@ def main():
                 gerar_relatorio()
 
             case '6':
-                # analise_matematica()
-                pass
+                while True:
+                    try:
+                        print('Bem vindo ao cálculo de tempo ganho com semáforos inteligentes')
+                        print('Digite a quantidade de semáforos que deseja calcular e descobrir o tempo ganhado: ')
+                        quant = int(input(''))
+
+                        if quant == 0:
+                            break
+
+                        tempo = calculo_tempo(quant)
+
+                        print('Deseja testar outra quantidade? ')
+                        novamente = input('Digite: (s/n)\n')
+
+                        if novamente == 'n':
+                            break
+                    
+                    except ValueError:
+                        entrada_invalida()
 
             case '7':
                 print('\nAgradecemos pela utilização do nosso sistema')
