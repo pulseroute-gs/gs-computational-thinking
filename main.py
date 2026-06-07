@@ -290,31 +290,33 @@ def main():
                         print('\nBem-vindo ao cálculo de tempo otimizado com semáforos inteligentes pelo PULSEROUTE.')
                         print('Digite o tempo do trajeto em minutos: ')
                         temp = int(input(''))
-                        print('\nDigite a quantidade de semáforos que deseja calcular e descubra o tempo ganho.')
-                        print('Digite 0 se deseja voltar ao menu principal: ')
-                        quant = int(input(''))
 
-                        if quant == 0:
-                            break
-                        
-                        elif temp <= 0:
+                        if temp <= 0:
                             entrada_invalida()
                         
                         else:
-                            economia = calculo_tempo(temp, quant)
+                            print('\nDigite a quantidade de semáforos que deseja calcular e descubra o tempo ganho.')
+                            print('Digite 0 se deseja voltar ao menu principal: ')
+                            quant = int(input(''))
 
-                            print(f'\nTempo total de percurso otimizado com o PULSEROUTE (em minutos): {temp - economia}')
-                            print(f'Tempo total economizado no trajeto (em minutos): {economia}')
-                            
-                            print('\nDeseja testar outra quantidade? \n')
-                            novamente = input('Digite: (s/n)\n')
-
-                            while novamente != ('s' or 'n'):
-                                entrada_invalida()
-                                novamente = input('')
-
-                            if novamente == 'n':
+                            if quant == 0:
                                 break
+                            
+                            else:
+                                economia = calculo_tempo(temp, quant)
+
+                                print(f'\nTempo total de percurso otimizado com o PULSEROUTE (em minutos): {temp - economia}')
+                                print(f'Tempo total economizado no trajeto (em minutos): {economia}')
+                                
+                                print('\nDeseja testar outra quantidade? \n')
+                                novamente = input('Digite: (s/n)\n')
+
+                                while novamente != ('s' or 'n'):
+                                    entrada_invalida()
+                                    novamente = input('')
+
+                                if novamente == 'n':
+                                    break
                     
                     except ValueError:
                         entrada_invalida()
