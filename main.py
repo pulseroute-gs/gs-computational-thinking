@@ -5,7 +5,7 @@ import random # Biblioteca usada para sortear um número aleatório para calcula
 
 # Falar q uma missão pode ser resimulada e alterar seu tempo com nosso projeto
 
-# Em relação ao conteúdo do código, além do contéudo dado em sala de aula, foi utilizado validação de entrada e acesso a API com try/except, além de manipulação de dicionários e APIs.
+# Em relação ao conteúdo do código, além do contéudo dado em sala de aula, foi utilizado validação de entrada e acesso a API com try/except, arrendondamentos de números com :.2f, além de manipulação de dicionários e APIs.
 
 # A gente pensou sobre esconder a chave da API, mas como o projeto será entregue somente com o código em um arquivo .py, achamos desnecessário esconder, por isso deixamos ela exposta aqui mesmo
 API_KEY = "eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6IjI5ZTRmMDdlY2EwMTQwMWFiZTlkYWIwMzAxYWZkYmUxIiwiaCI6Im11cm11cjY0In0=" # Essa é a chave da nossa API
@@ -153,7 +153,7 @@ def simular_pulseroute(): # Essa função serve para simular como funcionaria no
 
                     tempo_original = missao_atual["tempo_min"] # Recebe o tempo padrão do trajeto
 
-                    tempo_otimizado = calculo_tempo(tempo_original, semaforos) # Faz o cálculo da economia de tempo com essa quantidadde de semáforos inteligentes
+                    tempo_otimizado = calculo_tempo(tempo_original, semaforos) # Faz o cálculo da economia de tempo com a quantidade de semáforos determinado pelo nosso sistema e retorna esse valor para podermos guardar no dicionário
 
                     missao_atual["tempo_otimizado"] = tempo_otimizado # Armazena esse dado na missão
 
@@ -225,40 +225,40 @@ def gerar_relatorio(): # Essa função serve somente para fazer um relátorio da
             print("Nenhuma rota foi simulada com o PULSEROUTE!")
             print('Faça alguma simulação e depois retorne!\n')
         
-def calculo_tempo(tempo_inicial, quantidade_semaforos): # Função para calcular quanto tempo será economizado com uma determinda quantidade de semáforos inteligentes
+def calculo_tempo(tempo_inicial, quantidade_semaforos): # Essa função serve para retornar a economia de tempo com o PULSEROUTE
     ti = tempo_inicial
     qt = quantidade_semaforos
 
-    print("\n=== LEGENDA MATEMÁTICA ===\n")
+    print("\n=== LEGENDA MATEMÁTICA ===\n") # legenda das variáveis na nossa função
     print('T(x) = Tempo final com a otimização do PULSEROUTE')
     print('ti = Tempo normal do trajeto (sem o PULSEROUTE)')
     print('qt = Quantidade de semáforos do trajeto\n')
     print("Função: T(x) = ti × 0.99^qt\n")
     
-    resultado = ti * (0.99 ** qt)
+    resultado = ti * (0.99 ** qt) # Calcula o resultado da função
 
-    print("\n=== CÁLCULO MATEMÁTICO ===\n")
+    print("\n=== CÁLCULO MATEMÁTICO ===\n") # Mostra o passo a passo do cálculo matemático
     print(f'T(x) = {ti} × 0.99^({qt})')
-    print(f'T(x) = {ti} X {0.99 ** qt}')
-    print(f'T(x) = {resultado}')
+    print(f'T(x) = {ti} X {(0.99 ** qt):.2f}')
+    print(f'T(x) = {resultado:.2f}') 
 
     print('\nA seguir temos uma tabela para analisar os resultados dessa função:')
-    print("\n=== ANÁLISE EXPONENCIAL ===\n")
+    print("\n=== ANÁLISE EXPONENCIAL ===\n") # Aqui fazemos uma tabela para mostrar os resultados da função em determinados pontos
 
     print("Semáforos | Tempo Previsto")
 
     salto = 1
 
-    if qt > 15:
+    if qt > 15: # Se a quantidade de semáforos for muito grande, ele irá printar de 2 em 2 para redução do tamanho da tabela
         salto = 2
 
-    for i in range(0,qt+1,salto):
+    for i in range(0,qt+1,salto): # Aqui a tabela é printada com a quantidade recebida de semafóros mostrando o resultado de tempo com cada semáforo
         tempo = ti * (0.99 ** i)
         print(f"{i:^10} | {tempo:.2f} min")
 
-    economia = ti - resultado
+    economia = ti - resultado # Calcula a economia de tempo com o PULSEROUTE
     
-    return economia
+    return economia # Retorna essa economia onde a função foi chamada
 
 def main():
     while True:
@@ -300,7 +300,7 @@ def main():
                         print('Para iniciar o cálculo, digite o tempo do trajeto em minutos (sem o PULSEROUTE): ')
                         temp = int(input(''))
 
-                        if temp <= 0:
+                        if temp <= 0: # Se o usuário digitar um número menor ou igual a zero, ele terá que digitar novamente
                             entrada_invalida()
                         
                         else:
@@ -308,18 +308,18 @@ def main():
                             print('(ou 0 para voltar ao menu principal): ')
                             quant = int(input(''))
 
-                            if quant == 0:
+                            if quant == 0: # Se ele digitar zero, ele voltará ao menu principal
                                 break
                             
                             else:
-                                economia = calculo_tempo(temp, quant)
+                                economia = calculo_tempo(temp, quant) # Aqui a função calculo_tempo é chamada com o tempo e quantidade de semáforos determinada pelo usuário e recebe o resultado da economia e armazena nessa respectiva variável
 
-                                print(f'\nTempo total de percurso otimizado pelo PULSEROUTE (em minutos): {temp - economia}')
-                                print(f'Tempo total economizado no trajeto (em minutos): {economia}')
+                                print(f'\nTempo total de percurso otimizado pelo PULSEROUTE (em minutos): {(temp - economia):.2f}')
+                                print(f'Tempo total economizado no trajeto (em minutos): {economia:.2f}')
                                 
                                 print('\nDeseja testar outra quantidade? \n')
                                 
-                                while True:
+                                while True: # Verificação se o usuário deseja repetir essa funcionalidade novamente
                                     novamente = input('Digite: (s/n)\n')
                                     
                                     if novamente == 'n' or novamente == 's':
