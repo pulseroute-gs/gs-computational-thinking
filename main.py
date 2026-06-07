@@ -222,11 +222,11 @@ def calculo_tempo(tempo_inicial, quantidade_semaforos): # Função para calcular
     ti = tempo_inicial
     qt = quantidade_semaforos
 
-    print("\n=== LEGENDA ===\n")
+    print("\n=== LEGENDA MATEMÁTICA ===\n")
     print('T(x) = Tempo final com a otimização do PULSEROUTE')
-    print('ti = Tempo normal do trajeto')
-    print('qt = Quantidade de semáforos na rota\n')
-    print("Função: T(x) = ti × 0.985qt\n")
+    print('ti = Tempo normal do trajeto (sem o PULSEROUTE)')
+    print('qt = Quantidade de semáforos do trajeto\n')
+    print("Função: T(x) = ti × 0.985^qt\n")
     
     resultado = ti * (0.985 ** qt)
 
@@ -297,8 +297,8 @@ def main():
                             entrada_invalida()
                         
                         else:
-                            print('\nDigite a quantidade de semáforos que deseja calcular e descubra o tempo ganho.')
-                            print('Digite 0 se deseja voltar ao menu principal: ')
+                            print('\nDigite a quantidade de semáforos para calcular o tempo otimizado com o PULSEROUTE')
+                            print('(ou 0 para voltar ao menu principal): ')
                             quant = int(input(''))
 
                             if quant == 0:
@@ -307,12 +307,11 @@ def main():
                             else:
                                 economia = calculo_tempo(temp, quant)
 
-                                print(f'\nTempo total de percurso otimizado com o PULSEROUTE (em minutos): {temp - economia}')
+                                print(f'\nTempo total de percurso otimizado pelo PULSEROUTE (em minutos): {temp - economia}')
                                 print(f'Tempo total economizado no trajeto (em minutos): {economia}')
                                 
                                 print('\nDeseja testar outra quantidade? \n')
                                 
-
                                 while True:
                                     novamente = input('Digite: (s/n)\n')
                                     
