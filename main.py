@@ -226,7 +226,7 @@ def calculo_tempo(tempo_inicial, quantidade_semaforos): # Função para calcular
     print('T(x) = Tempo final com a otimização do PULSEROUTE')
     print('ti = Tempo normal do trajeto (sem o PULSEROUTE)')
     print('qt = Quantidade de semáforos do trajeto\n')
-    print("Função: T(x) = ti × 0.985qt\n")
+    print("Função: T(x) = ti × 0.985^qt\n")
     
     resultado = ti * (0.985 ** qt)
 
@@ -297,7 +297,7 @@ def main():
                             entrada_invalida()
                         
                         else:
-                            print('\nDigite a quantidade de semáforos para calcular o tempo otimizado com o PULSEROUTE.')
+                            print('\nDigite a quantidade de semáforos para calcular o tempo otimizado com o PULSEROUTE')
                             print('(ou 0 para voltar ao menu principal): ')
                             quant = int(input(''))
 
