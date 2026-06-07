@@ -182,7 +182,7 @@ def historico_missoes(): # Função para mostrar todos os dados armazenados de d
             print(f'Esse trajeto possui uma distância de: {missao_atual["distancia_km"]:.2f} km e uma duração de {missao_atual["tempo_min"]:.2f} min')
 
             if "tempo_otimizado" in missao_atual:
-                print(f'Com a utilização do PULSEROUTE, o tempo final desse trajeto é de {missao_atual["tempo_otimizado"]:.2f} min')
+                print(f'Com a utilização do PULSEROUTE, o tempo reduzido desse trajeto é de {missao_atual["tempo_otimizado"]:.2f} min')
 
             count+=1
 
@@ -229,13 +229,13 @@ def calculo_tempo(tempo_inicial, quantidade_semaforos): # Essa função serve pa
     ti = tempo_inicial
     qt = quantidade_semaforos
 
-    print("\n=== LEGENDA MATEMÁTICA ===\n") # legenda das variáveis na nossa função
+    print("\n=== LEGENDA MATEMÁTICA ===\n") # Legenda das variáveis da nossa função de cálculo de economia de tempo
     print('T(x) = Tempo final com a otimização do PULSEROUTE')
     print('ti = Tempo normal do trajeto (sem o PULSEROUTE)')
     print('qt = Quantidade de semáforos do trajeto\n')
     print("Função: T(x) = ti × 0.99^qt\n")
     
-    resultado = ti * (0.99 ** qt) # Calcula o resultado da função
+    resultado = ti * (0.99 ** qt) # Calcula o resultado dessa equação
 
     print("\n=== CÁLCULO MATEMÁTICO ===\n") # Mostra o passo a passo do cálculo matemático
     print(f'T(x) = {ti} × 0.99^({qt})')
