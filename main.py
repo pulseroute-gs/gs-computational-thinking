@@ -4,7 +4,6 @@ import requests # Biblioteca usada para fazer requisições para a API OpenRoute
 import random # Biblioteca usada para sortear um número aleatório para calcular um desvio padrão de uma média feita no código
 
 # Falar q uma missão pode ser resimulada e alterar seu tempo com nosso projeto
-# Adicionar mais localidades 
 
 # Em relação ao conteúdo do código, além do contéudo dado em sala de aula, foi utilizado validação de entrada e acesso a API com try/except, além de manipulação de dicionários e APIs.
 
@@ -29,10 +28,18 @@ def iniciar_trajeto(): # Essa função serve para simular um trajeto de um siste
     
     # Como estamos lidando com essa API, não estamos pedindo endereços ao usuário pois isso exigiria transformar o texto em coordenadas exatas, por isso resolvemos utilizar localizações pré-definidas acompanhadas de suas coordenadas para sermos mais exatos
     locais = {
-        1: ("Hospital Central", -23.5505, -46.6333),
+        1: ("Avenida Sapopemba", -23.6006133, -46.5120845),
         2: ("Avenida Paulista", -23.5614, -46.6559),
         3: ("Aeroporto Congonhas", -23.6261, -46.6566),
-        4: ("Estação da Luz", -23.5344, -46.6339)
+        4: ("Estação da Luz", -23.5344, -46.6339),
+        5: ("Hospital Israelita Albert Einstein - Morumbi", -23.5999746, -46.7152573),
+        6: ("Hospital Sírio-Libanês | Bela Vista", -23.5572102, -46.6537296),
+        7: ("Hospital das Clínicas FMUSP", -23.5577989, -46.6698598),
+        8: ("Hospital Infantil Sabará", -23.5497488, -46.6594652),
+        9: ("Hospital Beneficência Portuguesa", -23.5667198, -46.6417744),
+        10: ("Hospital São Paulo", -23.5977426, -46.6436056),
+        11: ("Marginal Pinheiros - Ponte Eusébio Matoso", -23.5721994, -46.7011593),
+        12: ("Marginal Tietê - Tatuapé", -23.5279757, -46.5851537)
     }
 
     for chave, valor in locais.items(): # Laço para printar as opções de locais pré-definidos
