@@ -222,19 +222,20 @@ def calculo_tempo(tempo_inicial, quantidade_semaforos): # Função para calcular
     ti = tempo_inicial
     qt = quantidade_semaforos
 
-    print("\n=== CÁLCULO MATEMÁTICO ===\n")
+    print("\n=== LEGENDA ===\n")
     print('T(x) = Tempo final com a otimização do PULSEROUTE')
     print('ti = Tempo normal do trajeto')
     print('qt = Quantidade de semáforos na rota\n')
-    print("Função: T(x) = ti × 0.95^qt\n")
+    print("Função: T(x) = ti × 0.985qt\n")
     
-    resultado = ti * (0.95 ** qt)
+    resultado = ti * (0.985 ** qt)
 
-    print(f'T(x) = {ti} × 0.95^({qt})')
-    print(f'T(x) = {ti} X {0.95 ** qt}')
+    print("\n=== CÁLCULO MATEMÁTICO ===\n")
+    print(f'T(x) = {ti} × 0.985^({qt})')
+    print(f'T(x) = {ti} X {0.985 ** qt}')
     print(f'T(x) = {resultado}')
 
-    print('\nA seguir temos uma tabela para analisar os pontos dessa função')
+    print('\nA seguir temos uma tabela para analisar os resultados dessa função:')
     print("\n=== ANÁLISE EXPONENCIAL ===\n")
 
     print("Semáforos | Tempo Previsto")
@@ -245,7 +246,7 @@ def calculo_tempo(tempo_inicial, quantidade_semaforos): # Função para calcular
         salto = 2
 
     for i in range(0,qt+1,salto):
-        tempo = ti * (0.95 ** i)
+        tempo = ti * (0.985 ** i)
         print(f"{i:^10} | {tempo:.2f} min")
 
     economia = ti - resultado
@@ -286,10 +287,10 @@ def main():
             case '6':
                 while True:
                     try:
-                        print('Bem-vindo ao cálculo de tempo otimizado com semáforos inteligentes pelo PULSEROUTE.')
-                        print('Digite o tempo de um trajeto em minutos: ')
+                        print('\nBem-vindo ao cálculo de tempo otimizado com semáforos inteligentes pelo PULSEROUTE.')
+                        print('Digite o tempo do trajeto em minutos: ')
                         temp = int(input(''))
-                        print('Digite a quantidade de semáforos que deseja calcular e descobrir o tempo ganhado')
+                        print('\nDigite a quantidade de semáforos que deseja calcular e descubra o tempo ganho.')
                         print('Digite 0 se deseja voltar ao menu principal: ')
                         quant = int(input(''))
 
@@ -302,10 +303,10 @@ def main():
                         else:
                             economia = calculo_tempo(temp, quant)
 
-                            print(f'\nO tempo otimizado com o PULSEROUTE foi de: {temp - economia}')
-                            print(f'A economia final foi de: {economia}')
+                            print(f'\nTempo total de percurso otimizado com o PULSEROUTE (em minutos): {temp - economia}')
+                            print(f'Tempo total economizado no trajeto (em minutos): {economia}')
                             
-                            print('Deseja testar outra quantidade? \n')
+                            print('\nDeseja testar outra quantidade? \n')
                             novamente = input('Digite: (s/n)\n')
 
                             if novamente == 'n':
