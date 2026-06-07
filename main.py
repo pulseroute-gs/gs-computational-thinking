@@ -160,7 +160,7 @@ def simular_pulseroute(): # Essa função serve para simular como funcionaria no
                     print("\nPULSE ROUTE")
                     print(f"Semáforos simulados: {semaforos}")
                     print(f"Tempo original: {tempo_original:.2f} min")
-                    print(f"Tempo final com a otimização do PULSEROUTE: {tempo_otimizado:.2f} min")
+                    print(f"Tempo economizado com o PULSEROUTE: {tempo_otimizado:.2f} min")
                     break
 
                 else:
@@ -233,13 +233,13 @@ def calculo_tempo(tempo_inicial, quantidade_semaforos): # Função para calcular
     print('T(x) = Tempo final com a otimização do PULSEROUTE')
     print('ti = Tempo normal do trajeto (sem o PULSEROUTE)')
     print('qt = Quantidade de semáforos do trajeto\n')
-    print("Função: T(x) = ti × 0.985^qt\n")
+    print("Função: T(x) = ti × 0.99^qt\n")
     
-    resultado = ti * (0.985 ** qt)
+    resultado = ti * (0.99 ** qt)
 
     print("\n=== CÁLCULO MATEMÁTICO ===\n")
-    print(f'T(x) = {ti} × 0.985^({qt})')
-    print(f'T(x) = {ti} X {0.985 ** qt}')
+    print(f'T(x) = {ti} × 0.99^({qt})')
+    print(f'T(x) = {ti} X {0.99 ** qt}')
     print(f'T(x) = {resultado}')
 
     print('\nA seguir temos uma tabela para analisar os resultados dessa função:')
@@ -253,7 +253,7 @@ def calculo_tempo(tempo_inicial, quantidade_semaforos): # Função para calcular
         salto = 2
 
     for i in range(0,qt+1,salto):
-        tempo = ti * (0.985 ** i)
+        tempo = ti * (0.99 ** i)
         print(f"{i:^10} | {tempo:.2f} min")
 
     economia = ti - resultado
