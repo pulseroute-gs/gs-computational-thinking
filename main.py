@@ -263,7 +263,7 @@ def main():
         print("3 - Simular PULSEROUTE") 
         print("4 - Consultar histórico de missões") 
         print("5 - Relatório de tempo salvo nas emergências") 
-        print("6 - Calcular economia de tempo por semáforo inteligente") 
+        print("6 - Calcular economia de tempo com o PULSEROUTE") 
         print("7 - Sair") 
 
         opcao = input("\nEscolha uma opção: ")
@@ -287,8 +287,10 @@ def main():
             case '6':
                 while True:
                     try:
-                        print('\nBem-vindo ao cálculo de tempo otimizado com semáforos inteligentes pelo PULSEROUTE.')
-                        print('Digite o tempo do trajeto em minutos: ')
+                        print('\nBem-vindo ao simulador de cálculo de tempo economizado com o PULSEROUTE.')
+                        print('Esta opção calcula o ganho de eficiência de tempo (em minutos) gerado pela intervenção')
+                        print('dos semáfotos inteligentes na rota da ambulância através do sistema.')
+                        print('Para iniciar o cálculo, digite o tempo do trajeto em minutos (sem o PULSEROUTE): ')
                         temp = int(input(''))
                         print('\nDigite a quantidade de semáforos que deseja calcular e descubra o tempo ganho.')
                         print('Digite 0 se deseja voltar ao menu principal: ')
