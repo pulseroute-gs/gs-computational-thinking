@@ -311,11 +311,15 @@ def main():
                                 print(f'Tempo total economizado no trajeto (em minutos): {economia}')
                                 
                                 print('\nDeseja testar outra quantidade? \n')
-                                novamente = input('Digite: (s/n)\n')
+                                
 
-                                while novamente != ('s' or 'n'):
+                                while True:
+                                    novamente = input('Digite: (s/n)\n')
+                                    
+                                    if novamente == 'n' or novamente == 's':
+                                        break
+                                    
                                     entrada_invalida()
-                                    novamente = input('')
 
                                 if novamente == 'n':
                                     break
