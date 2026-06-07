@@ -47,8 +47,8 @@ def iniciar_trajeto(): # Essa função serve para simular um trajeto de um siste
 
     while True: # Laço para validar a entrada do usuário
         try:
-            origem_opcao = int(input("\nEscolha origem: "))
-            destino_opcao = int(input("Escolha destino: "))
+            origem_opcao = int(input("\nPonto de partida da ambulância: "))
+            destino_opcao = int(input("Destino final do atendimento: "))
 
             if origem_opcao == destino_opcao:
                 print('Você precisa selecionar 2 localidades diferentes para conseguir fazer um trajeto!')
@@ -159,7 +159,8 @@ def simular_pulseroute(): # Essa função serve para simular como funcionaria no
 
                     print("\nPULSE ROUTE")
                     print(f"Semáforos simulados: {semaforos}")
-                    print(f"Tempo original: {tempo_original:.2f} min")
+                    print(f"Tempo original (sem o PULSEROUTE): {tempo_original:.2f} min")
+                    print(f"Tempo do trajeto com o PULSEROUTE: {(tempo_original-tempo_otimizado):.2f} min")
                     print(f"Tempo economizado com o PULSEROUTE: {tempo_otimizado:.2f} min")
                     break
 
@@ -179,10 +180,10 @@ def historico_missoes(): # Função para mostrar todos os dados armazenados de d
         for missao_atual in historico: # Laço para mostrar todas as missões armazenadas
             print("\n" + "=" * 55)
             print(f'\nMissão {count} - {missao_atual["origem"]} até {missao_atual["destino"]}')
-            print(f'Esse trajeto possui uma distância de: {missao_atual["distancia_km"]:.2f} km e uma duração de {missao_atual["tempo_min"]:.2f} min')
+            print(f'Esse trajeto possui uma distância de: {missao_atual["distancia_km"]:.2f} km e uma duração (sem o PULSEROUTE) de {missao_atual["tempo_min"]:.2f} min')
 
             if "tempo_otimizado" in missao_atual:
-                print(f'Com a utilização do PULSEROUTE, o tempo reduzido desse trajeto é de {missao_atual["tempo_otimizado"]:.2f} min')
+                print(f'Com a utilização do PULSEROUTE, a economia de tempo desse trajeto foi de {missao_atual["tempo_otimizado"]:.2f} min !')
 
             count+=1
 
@@ -209,16 +210,16 @@ def gerar_relatorio(): # Essa função serve somente para fazer um relátorio da
 
         if tempo_otimizado > 0: # Verificação se existe no mínimo uma rota simulada com nosso projeto
             media_normal = tempo_normal/quantidade
-            media_otimizada = tempo_otimizado/quantidade
+            media_economizada = tempo_otimizado/quantidade
 
-            media_economizada = media_normal - media_otimizada # Média do tempo economizado com nosso sistema
+            media_otimizada = media_normal - media_economizada # Média do tempo economizado com nosso sistema
 
             percentual = (media_economizada * 100) / media_normal  # Aqui calculamos um percentual de quanto tempo foi economizado em média com nosso produto
 
             print(f'A quantidade de rotas usadas nessa análise foram de: {quantidade}')
             print(f"A média do tempo normal dos trajetos é de: {media_normal:.2f} min")
-            print(f"A média do tempo dos trajetos com o PULSEROUTE: {media_otimizada:.2f} min")
-            print(f"A redução média de tempo nos trajetos com o PULSEROUTE: {media_economizada:.2f} min")
+            print(f"A média do tempo dos trajetos com o PULSEROUTE foi de: {media_otimizada:.2f} min")
+            print(f"A redução média de tempo nos trajetos com o PULSEROUTE foi de: {media_economizada:.2f} min")
             print(f"A média percentual do ganho de tempo com o PULSEROUTE foi de: {percentual:.2f}%")
 
         else:
@@ -238,8 +239,8 @@ def calculo_tempo(tempo_inicial, quantidade_semaforos): # Essa função serve pa
     resultado = ti * (0.99 ** qt) # Calcula o resultado dessa equação
 
     print("\n=== CÁLCULO MATEMÁTICO ===\n") # Mostra o passo a passo do cálculo matemático
-    print(f'T(x) = {ti} × 0.99^({qt})')
-    print(f'T(x) = {ti} X {(0.99 ** qt):.2f}')
+    print(f'T(x) = {ti:.2f} × 0.99^({qt})')
+    print(f'T(x) = {ti:.2f} X {(0.99 ** qt):.2f}')
     print(f'T(x) = {resultado:.2f}') 
 
     print('\nA seguir temos uma tabela para analisar os resultados dessa função:')
