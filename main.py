@@ -309,6 +309,10 @@ def main():
                             print('\nDeseja testar outra quantidade? \n')
                             novamente = input('Digite: (s/n)\n')
 
+                            while novamente != ('s' or 'n'):
+                                entrada_invalida()
+                                novamente = input('')
+
                             if novamente == 'n':
                                 break
                     
