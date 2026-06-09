@@ -51,7 +51,7 @@ def iniciar_trajeto(): # Essa função serve para simular um trajeto de um siste
             if origem_opcao == destino_opcao:
                 print('Você precisa selecionar 2 localidades diferentes para conseguir fazer um trajeto!')
 
-            elif (origem_opcao and destino_opcao) in locais:
+            elif (origem_opcao in locais) and (destino_opcao in locais):
                 break
             
             else:
