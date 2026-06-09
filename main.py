@@ -3,9 +3,7 @@
 import requests # Biblioteca usada para fazer requisições para a API OpenRouteService selecionada pelo nosso grupo como base de dados
 import random # Biblioteca usada para sortear um número aleatório para calcular um desvio padrão de uma média feita no código
 
-# Falar q uma missão pode ser resimulada e alterar seu tempo com nosso projeto
-
-# Em relação ao conteúdo do código, além do contéudo dado em sala de aula, foi utilizado validação de entrada e acesso a API com try/except, arrendondamentos de números com :.2f, além de manipulação de dicionários e APIs.
+# Em relação ao conteúdo do código, além do contéudo dado em sala de aula, foi utilizado validação de entrada e acesso a API com try/except, além de manipulação de dicionários e APIs.
 
 # A gente pensou sobre esconder a chave da API, mas como o projeto será entregue somente com o código em um arquivo .py, achamos desnecessário esconder, por isso deixamos ela exposta aqui mesmo
 API_KEY = "eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6IjI5ZTRmMDdlY2EwMTQwMWFiZTlkYWIwMzAxYWZkYmUxIiwiaCI6Im11cm11cjY0In0=" # Essa é a chave da nossa API
@@ -146,7 +144,7 @@ def simular_pulseroute(): # Essa função serve para simular como funcionaria no
 
                     semaforos = int(missao_atual["distancia_km"]*1000 // 500) # Aqui realizamos um cálculo de uma média para dizer que a cada 500 metros temos 1 semáforo
 
-                    semaforos = semaforos + random.randint(-1, 2) # Aqui para considerar um desvio da média, sorteamos um valor aleatório para somar a essa média
+                    semaforos = semaforos + random.randint(-2, 2) # Aqui para considerar um desvio da média, sorteamos um valor aleatório para somar a essa média
 
                     if semaforos < 0: # Caso esse desvio resulte num valor negativo iria causar um erro. Então esse if serve para considerar esse erro
                         semaforos = 0
@@ -266,13 +264,13 @@ def main():
         print("\n" + "=" * 55)
         print("         PULSEROUTE EMERGENCY SYSTEM")
         print("=" * 55)
-        print("1 - Sobre o Projeto") 
-        print("2 - Iniciar missão de emergência") 
-        print("3 - Simular PULSEROUTE") 
-        print("4 - Consultar histórico de missões") 
-        print("5 - Relatório de tempo salvo nas emergências") 
-        print("6 - Calcular economia de tempo com o PULSEROUTE") 
-        print("7 - Sair") 
+        print("1 - Sobre o Projeto") # Funcionalidade para explicar projeto
+        print("2 - Iniciar missão de emergência") # Funcionalidade para criar um trajeto entre 2 localidades pré-definidas e receber dados da API
+        print("3 - Simular PULSEROUTE") # Funcionalidade para simular o funcionamento do PulseRoute, estipulando quantidade de semáforos, e usar o cálculo da funcionalidade 6
+        print("4 - Consultar histórico de missões") # Funcionalidade para consultar trajetos salvos no sistema
+        print("5 - Relatório de tempo salvo nas emergências") # Funcionalidade para criar um relatório de médias dos trajetos realizados
+        print("6 - Calcular economia de tempo com o PULSEROUTE") # Funcionalidade para calcular a economia de tempo com uma função exponencial
+        print("7 - Sair") # Encerrar funcionamento do sistema
 
         opcao = input("\nEscolha uma opção: ")
 
@@ -315,8 +313,9 @@ def main():
                             else:
                                 economia = calculo_tempo(temp, quant) # Aqui a função calculo_tempo é chamada com o tempo e quantidade de semáforos determinada pelo usuário e recebe o resultado da economia e armazena nessa respectiva variável
 
-                                print(f'\nTempo total de percurso otimizado pelo PULSEROUTE (em minutos): {(temp - economia):.2f}')
-                                print(f'Tempo total economizado no trajeto (em minutos): {economia:.2f}')
+                                print(f"\nTempo original (sem o PULSEROUTE): {temp:.2f} min")
+                                print(f"Tempo do trajeto com o PULSEROUTE: {(temp-economia):.2f} min")
+                                print(f"Tempo economizado com o PULSEROUTE: {economia:.2f} min")
                                 
                                 print('\nDeseja testar outra quantidade? \n')
                                 
