@@ -23,7 +23,7 @@ def sobre_projeto(): # Função para apresentar uma breve descrição textual da
     print("rotas de ambulâncias em cidades.")
 
 def iniciar_trajeto(): # Essa função serve para simular um trajeto de um sistema de navegação padrão no mercado usando uma API de cálculo de trajeto real
-    
+    print()
     # Como estamos lidando com essa API, não estamos pedindo endereços ao usuário pois isso exigiria transformar o texto em coordenadas exatas, por isso resolvemos utilizar localizações pré-definidas acompanhadas de suas coordenadas para sermos mais exatos
     locais = {
         1: ("Avenida Sapopemba", -23.6006133, -46.5120845),
