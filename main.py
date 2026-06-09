@@ -310,6 +310,9 @@ def main():
                             if quant == 0: # Se ele digitar zero, ele voltará ao menu principal
                                 break
                             
+                            elif quant < 0:
+                                entrada_invalida()
+                                
                             else:
                                 economia = calculo_tempo(temp, quant) # Aqui a função calculo_tempo é chamada com o tempo e quantidade de semáforos determinada pelo usuário e recebe o resultado da economia e armazena nessa respectiva variável
 
